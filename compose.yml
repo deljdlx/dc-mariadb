@@ -1,0 +1,22 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb_global
+    restart: always
+    env_file:
+      - .env
+    command: --bind-address=0.0.0.0
+    ports:
+      - "3306:3306"
+    networks:
+      - global
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # 🔥 init script if needed
+
+networks:
+  global:
+    name: global
+
+volumes:
+  mariadb_data:

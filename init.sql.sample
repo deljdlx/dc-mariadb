@@ -1,0 +1,3 @@
+-- allow root to connect from any host
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'ROOT_PASSWORD' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
