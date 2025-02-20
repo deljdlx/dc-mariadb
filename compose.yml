@@ -2,6 +2,9 @@ services:
   mariadb:
     image: mariadb:latest
     container_name: mariadb_global
+    mem_limit: 256m
+    mem_reservation: 64m
+    cpus: 0.5
     restart: always
     env_file:
       - .env
@@ -9,14 +12,15 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - global
+      - mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
       # - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # 🔥 init script if needed
 
 networks:
-  global:
-    name: global
+  mariadb:
+    name: mariadb
+    driver: bridge
 
 volumes:
   mariadb_data:
