@@ -3,7 +3,7 @@ services:
     image: mariadb:latest
     container_name: mariadb
     mem_limit: 256m
-    mem_reservation: 64m
+    mem_reservation: 16m
     cpus: 0.5
     restart: always
     env_file:
@@ -15,7 +15,7 @@ services:
       - mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
-      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # 🔥 init script if needed
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # 🔥 init script if needed
 
 networks:
   mariadb:
